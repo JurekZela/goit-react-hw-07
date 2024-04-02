@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts } from './contactsOps';
+import { fetchContacts, addContacts, deleteContact } from './contactsOps';
+
+const pendingContact = (state, action) => {
+  state.isLoading = true;
+};
+
+const rejectedContact = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 
 const contactsSlice = createSlice({
@@ -11,30 +20,34 @@ const contactsSlice = createSlice({
           },
         extraReducers: builder => {
           builder
-           .addCase(fetchContacts.pending, (state, action) => {
-            state.isLoading = true;
-           })
+           .addCase(fetchContacts.pending, pendingContact)
            .addCase(fetchContacts.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.error = false;
+            state.error = null;
             state.items = action.payload;
            })
-           .addCase(fetchContacts.rejected, (state, action) => {
+           .addCase(fetchContacts.rejected, rejectedContact)
+           .addCase(addContacts.pending, pendingContact)
+           .addCase(addContacts.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.error = action.payload
+            state.error = null;
+            state.items.push(action.payload);
+
            })
+           .addCase(addContacts.rejected, rejectedContact)
+           .addCase(deleteContact.pending, pendingContact)
+           .addCase(deleteContact.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.error = null;
+
+            const index = state.items.findIndex(
+              item => item.id === action.payload.id
+            )
+
+            state.items.splice(index, 1);
+          })
+           .addCase(deleteContact.rejected, rejectedContact)
         }
       });
 
 export const contactsReducer = contactsSlice.reducer;
-export const { addContact, deleteContact } = contactsSlice.actions;
-
-
-// reducers: {
-//   addContact: (state, action) => {
-//     state.items.push(action.payload);
-//   },
-//   deleteContact: (state, action) => {
-//       state.items = state.items.filter(item => item.id !== action.payload)
-//   },
-// },
