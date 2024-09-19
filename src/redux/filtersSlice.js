@@ -8,11 +8,12 @@ initialState: {
 
 reducers: {
     changeFilter: (state, action) => {
-        
-        return state = action.payload;
+  state.name = action.payload;
     }
 }
 })
 
 export const { changeFilter } = filterSlice.actions;
 export default filterSlice.reducer;
+
+export const selectFilter = (state) => state.filters.name;

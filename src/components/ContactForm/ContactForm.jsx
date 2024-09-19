@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Button, StyledForm as Form, StyledField as Field, StyledLabel as Label, ErrorMsg, } from './Phonebook-styled';
-import { addContact } from '../../redux/contactsSlice';
+import { Button, StyledForm as Form, StyledField as Field, StyledLabel as Label, ErrorMsg, } from './contactForm-styled';
+import { addContact } from '../../redux/contactsOps';
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -16,7 +16,6 @@ const SignupSchema = Yup.object().shape({
 export default function ContactForm  ()  {
     const dispatch = useDispatch();
 
-
   return (
     <Formik
     initialValues={{
@@ -27,9 +26,10 @@ export default function ContactForm  ()  {
     validationSchema={SignupSchema}
     onSubmit={async (values, actions) => {
       await new Promise((r) => setTimeout(r, 500));
-
+      
       dispatch(addContact({
-        ...values
+        name: values.name,
+        number: values.number,
       }))
       actions.resetForm();
     }}
