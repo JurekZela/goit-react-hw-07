@@ -3,11 +3,12 @@ import { fetchContacts, addContact, deleteContact } from "./contactsOps";
 import { selectFilter } from './filtersSlice';
 
 const handlePending = (state) => {
-  state.isLoading = true;
+  state.loading = true;
+
 };
 
 const handleRejected = (state, action) => {
-  state.isLoading = false;
+  state.loading = false;
   state.error = action.payload;
 };
 
@@ -48,8 +49,10 @@ const contactsSlice = createSlice({
 export  default contactsSlice.reducer;
 
 export const selectContacts = (state) => state.contacts.items;
+export const selectLoading = (state) => state.contacts.loading;
+export const selectError = (state) => state.contacts.error;
 
-export const selectItemsFilter = createSelector([selectContacts, selectFilter],
+export const selectFilteredContacts = createSelector([selectContacts, selectFilter],
    (contacts, filter) =>  {
     switch (filter) {
       case filter:
