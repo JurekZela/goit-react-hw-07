@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
-import { Button, StyledForm as Form, StyledField as Field, StyledLabel as Label, ErrorMsg, } from './contactForm-styled';
-import { addContact } from '../../redux/contactsOps';
+import css from './contactForm.module.css';
+import { addContactToList } from '../../redux/contactsOps';
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -27,27 +27,27 @@ export default function ContactForm  ()  {
     onSubmit={async (values, actions) => {
       await new Promise((r) => setTimeout(r, 500));
       
-      dispatch(addContact({
+      dispatch(addContactToList({
         name: values.name,
         number: values.number,
       }))
       actions.resetForm();
     }}
   >
-    <Form>
-      <Label>
+    <Form className={css.form}>
+      <label className={css.label}>
         Name
-        <Field  name="name" placeholder="Phil Collins" />
-        <ErrorMsg name="name" component="span" />
-        </Label>
+        <Field className={css.field}  name="name" placeholder="Phil Collins" />
+        <ErrorMessage className={css.errMessage} name="name" component="span" />
+        </label>
 
-      <Label>
+      <label className={css.label}>
         Number
-        <Field type="tel"  name="number" placeholder="+48-000-000-000" />
-        <ErrorMsg name="number" component="span" />
-        </Label>       
+        <Field className={css.field} type="tel"  name="number" placeholder="+48-000-000-000" />
+        <ErrorMessage className={css.errMessage} name="number" component="span" />
+        </label>
 
-      <Button type="submit">Add contact</Button>
+      <button className={css.button} type="submit">Add contact</button>
     </Form>    
   </Formik>
   )
