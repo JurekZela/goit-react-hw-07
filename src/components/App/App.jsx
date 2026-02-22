@@ -10,7 +10,6 @@ import { Card } from '../ContactList/contactLIst-styled';
 export default function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-  console.log(isLoading);
   
   const error = useSelector(selectError);
 
