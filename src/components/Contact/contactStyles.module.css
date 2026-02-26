@@ -1,0 +1,9 @@
+.title {
+    font-weight: 350;
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+
+.removeBtn {
+    cursor: pointer;
+}

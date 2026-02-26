@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsOps';
-import { RemoveButton, Title } from '../ContactList/contactLIst-styled';
+import css from './contactStyles.module.css'
 
 export default function Contact ({ contacts }) {
   
@@ -9,10 +9,10 @@ export default function Contact ({ contacts }) {
 
     return (
        <>
-        <Title>
+        <p className={css.title}>
           {contacts.name}: {contacts.number}
-          </Title>
-          <RemoveButton onClick={handleDelete}>Delete</RemoveButton>
+          </p>
+          <button className={css.removeBtn} onClick={handleDelete}>Delete</button>
      </>
     )
 }
