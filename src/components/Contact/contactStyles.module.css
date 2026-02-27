@@ -4,6 +4,16 @@
     padding-bottom: 5px;
 }
 
-.removeBtn {
+.deleteBtn {
+    background-color: rgb(255, 0, 129);
     cursor: pointer;
+    padding: 5px;
+    border: 1px solid black;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+        background-color: rgba(255, 0, 130, 0.5) 0px 2px 25px;
+        color: black;
+        border: 1px solid rgb(255, 255, 255);
+    }
 }

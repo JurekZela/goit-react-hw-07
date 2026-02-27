@@ -12,7 +12,7 @@ export default function Contact ({ contacts }) {
         <p className={css.title}>
           {contacts.name}: {contacts.number}
           </p>
-          <button className={css.removeBtn} onClick={handleDelete}>Delete</button>
+          <button className={css.deleteBtn} onClick={handleDelete}>Delete</button>
      </>
     )
 }
