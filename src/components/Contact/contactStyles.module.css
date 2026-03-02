@@ -8,12 +8,16 @@
     background-color: rgb(255, 0, 129);
     cursor: pointer;
     padding: 5px;
-    border: 1px solid black;
     color: rgb(255, 255, 255);
+    border-radius: 5px;
+    outline: 0;
+    border: 0;
+    text-transform: capitalize;
+    box-shadow: 0 2px 2px lightgray;
+    transition: ease background-color 250ms;
 
     &:hover {
         background-color: rgba(255, 0, 130, 0.5) 0px 2px 25px;
         color: black;
-        border: 1px solid rgb(255, 255, 255);
     }
 }
