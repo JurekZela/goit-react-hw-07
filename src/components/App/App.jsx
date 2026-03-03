@@ -7,26 +7,26 @@ import ContactForm  from '../ContactForm/ContactForm';
 import SearchBox from '../SearchBox/SearchBox';
 import css from '../ContactList/contactList.module.css';
 
-export default function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  
-  const error = useSelector(selectError);
+    export default function App() {
+        const dispatch = useDispatch();
+        const isLoading = useSelector(selectLoading);
 
-  useEffect(() => {
-    dispatch(fetchContacts())
-  }, [dispatch]);
+        const error = useSelector(selectError);
 
-  return (
-    <>
-  {error && (<p>{error}</p>)}
-    <ul className={css.card}>
-      <ContactForm />
-        <SearchBox />
-        {isLoading && !error && (<p>Loading...</p>)}
-        {error && (<p>{error}</p>)}
-        <ContactList />
-    </ul>
-    </>
-  )
-};
+        useEffect(() => {
+            dispatch(fetchContacts())
+        }, [dispatch]);
+
+        return (
+            <>
+                {error && (<p>{error}</p>)}
+                <ul className={css.card}>
+                    <ContactForm/>
+                    <SearchBox/>
+                    {isLoading && !error && (<p>Loading...</p>)}
+                    {error && (<p>{error}</p>)}
+                    <ContactList/>
+                </ul>
+            </>
+        )
+    };
